@@ -5,7 +5,7 @@
     Copyright (c) 2018 Duong B. Nguyen
     All rights reserved.
 
-    See Copyright.txt for details
+    See LICENSE for details
 
 =========================================================================*/
 

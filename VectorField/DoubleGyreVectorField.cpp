@@ -20,6 +20,8 @@ void DoubleGyreVectorField::uSpeed(const double x, const double y, const double 
         *u=0;
 }
 
+
+
 void DoubleGyreVectorField::vSpeed(const double x, const double y, const double t, double *v)
 {
     *v = PI*A*cos(PI*fxt(x, t))*sin(PI*y)*dfdx(x, t);
@@ -40,4 +42,30 @@ void DoubleGyreVectorField::getJacobian(const double x, const double y, const do
     jac.entry[0][1] = PI*A*sin(PI*f_x)*sin(PI*y)*PI; //d(vx)/dy
     jac.entry[1][0] = (PI*A*sin(PI*y))*(-PI*sin(PI*f_x)*d_f_x*d_f_x + cos(PI*f_x)*dd_f_x);
     jac.entry[1][1] = PI*A*cos(PI*f_x)*cos(PI*y)*PI*d_f_x;
+}
+
+void DoubleGyreVectorField::getAttribute(const double x, const double y, const double t, double *value)
+{
+
+}
+
+double DoubleGyreVectorField::fxt(double x, double t)
+{
+    return at(t)*x*x + bt(t)*x;
+}
+
+/** needs to convert to numerical way*/
+double DoubleGyreVectorField::dfdx(double x, double t)
+{
+    return 2*x*at(t) + bt(t);
+}
+
+double DoubleGyreVectorField::at(double t)
+{
+    return ee*sin(ww*t);
+}
+
+double DoubleGyreVectorField::bt(double t)
+{
+    return (1-2*ee*sin(ww*t));
 }

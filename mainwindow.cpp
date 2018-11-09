@@ -5,13 +5,15 @@
     Copyright (c) 2018 Duong B. Nguyen
     All rights reserved.
 
-    See Copyright.txt for details
+    See LICENSE for details
 
 =========================================================================*/
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
+#include <Utilities/Utilities.h>
+
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -20,12 +22,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
+    setupSignalSlotConnection();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+
 }
 
 /*
@@ -33,15 +36,43 @@ MainWindow::~MainWindow()
  */
 void MainWindow::setupSignalSlotConnection()
 {
-    connect(ui->flowID_ComboBox, SIGNAL(activated(QString)), this, SLOT(setFlowData(QString)));
+    connect(ui->flowID_ComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(setFlowData(const QString&)));
 }
 
 /*
  * Set flow simulation based on the selection from users
  */
-void MainWindow::setFlowData(const QString)
+void MainWindow::setFlowData(const QString& flowName)
 {
 
+    string flowNameStr = flowName.toStdString();
+    unordered_map<string, int> flowIDMapper{
+        { "Double Gyre", Flow_DoubleGyre },
+        { "Cylinder 2D", Flow_Cylinder2D },
+    };
+
+    flowID = (FlowID)flowIDMapper[flowNameStr];
+    updateFlowField();
+
+}
+
+void MainWindow::updateFlowField()
+{
+
+
+
+    switch (flowID) {
+        case Flow_DoubleGyre:
+        {
+            flowField = new DoubleGyreVectorField;
+            cout<<"Flow double gyre"<<endl;
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
 }
 
 /*
