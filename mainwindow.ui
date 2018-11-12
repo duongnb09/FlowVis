@@ -106,6 +106,16 @@
          <property name="title">
           <string>LIC View</string>
          </property>
+         <widget class="LICOpenGLWidget" name="openGLWidget">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>1101</width>
+            <height>201</height>
+           </rect>
+          </property>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -146,6 +156,13 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>LICOpenGLWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header location="global">LICOpenGLWidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

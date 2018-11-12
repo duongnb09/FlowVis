@@ -59,8 +59,6 @@ void MainWindow::setFlowData(const QString& flowName)
 void MainWindow::updateFlowField()
 {
 
-
-
     switch (flowID) {
         case Flow_DoubleGyre:
         {
