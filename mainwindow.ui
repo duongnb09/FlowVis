@@ -106,7 +106,7 @@
          <property name="title">
           <string>LIC View</string>
          </property>
-         <widget class="LICOpenGLWidget" name="openGLWidget">
+         <widget class="LICOpenGLWidget" name="licOpenGLWidget">
           <property name="geometry">
            <rect>
             <x>10</x>

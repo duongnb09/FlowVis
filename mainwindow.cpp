@@ -37,6 +37,7 @@ MainWindow::~MainWindow()
 void MainWindow::setupSignalSlotConnection()
 {
     connect(ui->flowID_ComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(setFlowData(const QString&)));
+    connect(this,SIGNAL(licDataChanged(VectorField&)),ui->licOpenGLWidget,SLOT(updateLICData(VectorField&)));
 }
 
 /*
@@ -62,8 +63,9 @@ void MainWindow::updateFlowField()
     switch (flowID) {
         case Flow_DoubleGyre:
         {
-            flowField = new DoubleGyreVectorField;
-            cout<<"Flow double gyre"<<endl;
+            flowField = new DoubleGyreVectorField(0.1, PI / 5., 0.25);
+            cout<<"Flow float gyre"<<endl;
+            emit licDataChanged(*flowField);
             break;
         }
         default:

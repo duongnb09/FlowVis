@@ -9,24 +9,26 @@ class DoubleGyreVectorField : public VectorField
 
 public:
     DoubleGyreVectorField();
-    DoubleGyreVectorField(double A, double ww, double ee);
-    void uSpeed(const double x, const double y, const double t, double *u);
-    void vSpeed(const double x, const double y, const double t, double *v);
-    void getJacobian(const double x, const double y, const double t, MyMatrix2x2& jac);
-    void getAttribute(const double x, const double y, const double t,double* value);
+    DoubleGyreVectorField(float A, float ww, float ee);
+    void uSpeed(const float x, const float y, const float t, float *u);
+    void vSpeed(const float x, const float y, const float t, float *v);
+    void getSpeed(const float x, const float y, const float t, float *u, float *v);
+    void getJacobian(const float x, const float y, const float t, MyMatrix2x2& jac);
+    void getAttribute(const float x, const float y, const float t,float* value);
+private:
 
 private:
-    double A;
-    double ww;
-    double ee;
+    float A;
+    float ww;
+    float ee;
 
-    double fxt(double x, double t);
+    float fxt(float x, float t);
 
     /** needs to convert to numerical way*/
-    double dfdx(double x, double t);
-    double at(double t);
+    float dfdx(float x, float t);
+    float at(float t);
 
-    double bt(double t);
+    float bt(float t);
 };
 
 #endif // DOUBLEGYREVECTORFIELD_H

@@ -39,6 +39,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+signals:
+    void licDataChanged(VectorField& vectorFieldData);
+
 private slots:
 
     /* Set flow simulation based on the selection from users */
@@ -46,6 +49,8 @@ private slots:
 
     /* Open a file dialog and load an input flow simulation data file */
     void on_actionOpen_File_triggered();
+
+
 
 
 
